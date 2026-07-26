@@ -5,6 +5,16 @@ const jwt = require("jsonwebtoken");
 const redisClient = require("../config/redis");
 const Submissions = require("../models/submission");
 
+const getCookieOptions = () => {
+  const isProduction = process.env.NODE_ENV === "production";
+  return {
+    maxAge: 60 * 60 * 1000,
+    httpOnly: true,
+    sameSite: isProduction ? "none" : "lax",
+    secure: isProduction
+  };
+};
+
 const register = async (req, res) => {
   try {
     //validate the data
@@ -34,7 +44,7 @@ const register = async (req, res) => {
       }
     );
 
-    res.cookie("token", token, { maxAge: 60 * 60 * 1000 });
+    res.cookie("token", token, getCookieOptions());
     res.status(201).json({
       user: reply,
       message: "User Registered Sucessfully"
@@ -75,7 +85,7 @@ const login = async (req, res) => {
       }
     );
 
-    res.cookie("token", token, { maxAge: 60 * 60 * 1000 });
+    res.cookie("token", token, getCookieOptions());
     res.status(200).json({
       user: reply,
       message: "Logged In Successfully"
@@ -92,7 +102,13 @@ const logout = async (req, res) => {
     const payload = jwt.decode(token);
     await redisClient.set(`token:${token}`, "Blocked");
     await redisClient.expireAt(`token:${token}`, payload.exp);
-    res.cookie('token', null, { expires: new Date(Date.now()) });
+    const isProduction = process.env.NODE_ENV === "production";
+    res.cookie('token', null, { 
+      expires: new Date(Date.now()),
+      httpOnly: true,
+      sameSite: isProduction ? "none" : "lax",
+      secure: isProduction
+    });
     res.send("Logged Out Sucessfully");
     //validate the token
     //token add kar dunga Redis ke blocklist me
@@ -124,7 +140,7 @@ const adminRegister = async (req, res) => {
       }
     );
 
-    res.cookie("token", token, { maxAge: 60 * 60 * 1000 });
+    res.cookie("token", token, getCookieOptions());
     res.status(201).send("Admin Registered Sucessfully");
   } catch (err) {
     res.status(400).send("Erro:" + err);

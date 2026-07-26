@@ -73,10 +73,12 @@ const googleAuth = async (req, res) => {
       { expiresIn: 60 * 60 }
     );
 
+    const isProduction = process.env.NODE_ENV === "production";
     res.cookie("token", jwtToken, { 
       maxAge: 60 * 60 * 1000,
       httpOnly: true,
-      sameSite: "strict"
+      sameSite: isProduction ? "none" : "lax",
+      secure: isProduction
     });
 
     const reply = {
