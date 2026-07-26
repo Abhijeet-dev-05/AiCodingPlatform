@@ -56,6 +56,17 @@ app.use("/dashboard", userDashboardRouter);
 app.use("/code-review", codeReviewRouter);
 app.use("/review", spacedRepetitionRouter);
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    status: "success",
+    message: "LeetCode AI Platform Backend API is running successfully!"
+  });
+});
+
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "OK" });
+});
+
 const initializeConnections = async () => {
   try {
     await Promise.all([main(), redisClient.connect()]);
