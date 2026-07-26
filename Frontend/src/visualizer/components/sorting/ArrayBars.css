@@ -1,0 +1,161 @@
+/* ═══════════════════════════════════════════════════════════════
+   ArrayBars — Fixed height so percentage bars actually render
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Outer card */
+.array-bars-container {
+  background: var(--ds-bg-elevated);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-xl);
+  padding: 16px 16px 0;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle grid overlay */
+.array-bars-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Bar row ─────────────────────────────────────────────────── */
+/*
+  KEY FIX: give .array-bars a fixed pixel height.
+  The JSX renders bar height as:  height: `${(value/max)*100}%`
+  That percentage resolves against the nearest ancestor with a
+  definite height.  We set height: 260px here → bars resolve
+  correctly against 260px.
+*/
+.array-bars {
+  display: flex;
+  align-items: flex-end;   /* bars grow upward from the bottom */
+  justify-content: center;
+  width: 100%;
+  height: 260px;           /* ← definite height for % resolution */
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Bar wrapper (one column per value) ── */
+.bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  min-width: 20px;
+  max-width: 72px;
+  /* The wrapper must also be 260px tall so bar's height:% resolves */
+  height: 260px;
+  /* Kill the global visualizer-theme padding override */
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ── The actual bar ── */
+.bar {
+  width: 100%;
+  border-radius: 0;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 10px;
+  transition: height 0.32s cubic-bezier(0.34,1.56,0.64,1),
+              background 0.18s ease,
+              box-shadow  0.18s ease;
+}
+
+/* ── Value label (sits inside the bar near the top) ── */
+.bar-value {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: clamp(0.58rem, 1.1vw, 0.76rem);
+  font-weight: 700;
+  color: rgba(255,255,255,0.95);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+/* ── Index label (below the bar) ── */
+.bar-index {
+  font-size: 0.64rem;
+  font-weight: 600;
+  color: var(--ds-text-muted);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  padding: 5px 0 8px;
+}
+
+/* ═══════════════════════════
+   BAR COLOUR STATES
+═══════════════════════════ */
+
+.bar.default {
+  background: linear-gradient(180deg,
+    rgba(148,163,184,0.6)  0%,
+    rgba(100,116,139,0.38) 100%
+  );
+  border: 1px solid rgba(148,163,184,0.14);
+}
+
+.bar.comparing {
+  background: linear-gradient(180deg, #fbbf24 0%, #b45309 100%);
+  box-shadow: 0 0 20px rgba(251,191,36,0.5);
+  border: 1px solid rgba(251,191,36,0.35);
+}
+
+.bar.swapped {
+  background: linear-gradient(180deg, #f472b6 0%, #be185d 100%);
+  box-shadow: 0 0 22px rgba(244,114,182,0.55);
+  border: 1px solid rgba(244,114,182,0.35);
+  animation: swap-pop 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.bar.sorted {
+  background: linear-gradient(180deg, #4ade80 0%, #15803d 100%);
+  box-shadow: 0 0 18px rgba(74,222,128,0.4);
+  border: 1px solid rgba(74,222,128,0.3);
+}
+
+.bar.pivot {
+  background: linear-gradient(180deg, #a855f7 0%, #6d28d9 100%);
+  box-shadow: 0 0 18px rgba(168,85,247,0.45);
+  border: 1px solid rgba(168,85,247,0.3);
+}
+
+@keyframes swap-pop {
+  0%   { transform: scaleX(1)    scaleY(1); }
+  45%  { transform: scaleX(1.07) scaleY(1.05); }
+  100% { transform: scaleX(1)    scaleY(1); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .array-bars,
+  .bar-wrapper    { height: 200px; }
+  .array-bars     { gap: 5px; }
+  .bar-value      { font-size: 0.58rem; }
+}
+
+@media (max-width: 480px) {
+  .array-bars,
+  .bar-wrapper    { height: 160px; }
+  .array-bars     { gap: 4px; }
+}

@@ -1,0 +1,88 @@
+/* ═══════════════════════════════════════════════════════
+   CodeArena Design System — Token Foundation
+   Professional dark theme inspired by GitHub & Linear
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  --ds-bg-app:       #09090d;
+  --ds-bg-surface:   #0f0f14;
+  --ds-bg-elevated:  #141419;
+  --ds-bg-overlay:   #1a1a21;
+  --ds-bg-hover:     rgba(255,255,255,0.04);
+  --ds-bg-active:    rgba(255,255,255,0.07);
+  --ds-text-primary:   #f1f5f9;
+  --ds-text-secondary: #94a3b8;
+  --ds-text-muted:     #4b5563;
+  --ds-text-disabled:  #374151;
+  --ds-text-inverse:   #09090d;
+  --ds-brand:           #f472b6;
+  --ds-brand-dim:       rgba(244,114,182,0.12);
+  --ds-brand-border:    rgba(244,114,182,0.22);
+  --ds-brand-hover:     #ec4899;
+  --ds-brand-2:         #a855f7;
+  --ds-brand-2-dim:     rgba(168,85,247,0.12);
+  --ds-gradient:        linear-gradient(135deg, #f472b6 0%, #a855f7 100%);
+  --ds-gradient-subtle: linear-gradient(135deg, rgba(244,114,182,0.08) 0%, rgba(168,85,247,0.08) 100%);
+  --ds-success:        #4ade80;
+  --ds-success-dim:    rgba(74,222,128,0.10);
+  --ds-success-border: rgba(74,222,128,0.22);
+  --ds-warning:        #fbbf24;
+  --ds-warning-dim:    rgba(251,191,36,0.10);
+  --ds-warning-border: rgba(251,191,36,0.22);
+  --ds-error:          #f87171;
+  --ds-error-dim:      rgba(248,113,113,0.10);
+  --ds-error-border:   rgba(248,113,113,0.22);
+  --ds-info:           #38bdf8;
+  --ds-info-dim:       rgba(56,189,248,0.10);
+  --ds-info-border:    rgba(56,189,248,0.22);
+  --ds-border:        rgba(255,255,255,0.07);
+  --ds-border-medium: rgba(255,255,255,0.12);
+  --ds-border-strong: rgba(255,255,255,0.20);
+  --ds-radius-xs:  4px;
+  --ds-radius-sm:  6px;
+  --ds-radius-md:  10px;
+  --ds-radius-lg:  14px;
+  --ds-radius-xl:  18px;
+  --ds-radius-2xl: 24px;
+  --ds-radius-full: 9999px;
+  --ds-space-1:4px;  --ds-space-2:8px;   --ds-space-3:12px;
+  --ds-space-4:16px; --ds-space-5:20px;  --ds-space-6:24px;
+  --ds-space-8:32px; --ds-space-10:40px; --ds-space-12:48px; --ds-space-16:64px;
+  --ds-font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --ds-font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  --ds-font-display: 'Inter', sans-serif;
+  --ds-text-xs:0.72rem; --ds-text-sm:0.82rem; --ds-text-base:0.92rem; --ds-text-md:1rem;
+  --ds-text-lg:1.125rem; --ds-text-xl:1.25rem; --ds-text-2xl:1.5rem;
+  --ds-text-3xl:1.875rem; --ds-text-4xl:2.25rem;
+  --ds-shadow-sm:  0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  --ds-shadow-md:  0 4px 12px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.3);
+  --ds-shadow-lg:  0 10px 30px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.3);
+  --ds-shadow-xl:  0 20px 50px rgba(0,0,0,0.6), 0 8px 20px rgba(0,0,0,0.3);
+  --ds-shadow-brand:    0 4px 20px rgba(244,114,182,0.25);
+  --ds-shadow-brand-lg: 0 8px 30px rgba(244,114,182,0.35);
+  --ds-ease:        cubic-bezier(0.16, 1, 0.3, 1);
+  --ds-ease-in:     cubic-bezier(0.4, 0, 1, 1);
+  --ds-ease-out:    cubic-bezier(0, 0, 0.2, 1);
+  --ds-duration-fast:120ms; --ds-duration-base:200ms;
+  --ds-duration-slow:350ms; --ds-duration-slower:500ms;
+  --ds-z-base:1; --ds-z-raised:10; --ds-z-dropdown:200;
+  --ds-z-sticky:300; --ds-z-modal:400; --ds-z-toast:500; --ds-z-tooltip:600;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+
+@keyframes ds-spin     { to { transform: rotate(360deg); } }
+@keyframes ds-pulse    { 0%,100%{opacity:1} 50%{opacity:0.4} }
+@keyframes ds-shimmer  { 0%{background-position:-400px 0} 100%{background-position:400px 0} }
+@keyframes ds-fade-in  { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+@keyframes ds-scale-in { from{opacity:0;transform:scale(0.94)} to{opacity:1;transform:scale(1)} }
+@keyframes ds-slide-down  { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+@keyframes ds-slide-up    { from{opacity:0;transform:translateY(8px)}  to{opacity:1;transform:translateY(0)} }
+@keyframes ds-slide-right { from{opacity:0;transform:translateX(-8px)} to{opacity:1;transform:translateX(0)} }
+@keyframes ds-toast-in    { from{opacity:0;transform:translateX(100%)} to{opacity:1;transform:translateX(0)} }
+@keyframes ds-toast-out   { from{opacity:1;transform:translateX(0)} to{opacity:0;transform:translateX(100%)} }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration:0.01ms!important; transition-duration:0.01ms!important; }
+}

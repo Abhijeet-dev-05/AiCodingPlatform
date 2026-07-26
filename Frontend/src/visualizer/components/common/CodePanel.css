@@ -1,0 +1,97 @@
+/* ═══════════════════════════════════════════════════════════════
+   CodePanel — Premium ds-token Theme
+   ═══════════════════════════════════════════════════════════════ */
+
+.code-panel {
+  background: var(--ds-bg-elevated);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-xl);
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset;
+}
+
+/* Header bar */
+.code-panel-title {
+  background: var(--ds-bg-overlay);
+  color: var(--ds-text-secondary);
+  font-size: var(--ds-text-sm);
+  font-weight: 700;
+  padding: 10px 14px;
+  margin: 0;
+  border-bottom: 1px solid var(--ds-border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: -0.01em;
+}
+
+/* "{ }" prefix icon */
+.code-panel-title::before {
+  content: '{ }';
+  font-family: var(--ds-font-mono);
+  font-size: 0.75rem;
+  color: var(--ds-brand);
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+/* Code content area */
+.code-content {
+  padding: 8px 0;
+  font-family: var(--ds-font-mono);
+  font-size: 0.78rem;
+  line-height: 1.85;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+/* Scrollbar */
+.code-content::-webkit-scrollbar       { width: 4px; }
+.code-content::-webkit-scrollbar-track { background: transparent; }
+.code-content::-webkit-scrollbar-thumb {
+  background: var(--ds-border-medium);
+  border-radius: var(--ds-radius-full);
+}
+.code-content::-webkit-scrollbar-thumb:hover { background: var(--ds-border-strong); }
+
+/* Individual code line */
+.code-line {
+  display: flex;
+  align-items: baseline;
+  padding: 1px 14px;
+  transition: background 120ms ease;
+  border-left: 3px solid transparent;
+}
+
+.code-line.active {
+  background: rgba(244,114,182,0.09);
+  border-left-color: var(--ds-brand);
+}
+
+.code-line.active .line-content {
+  color: var(--ds-text-primary);
+  font-weight: 600;
+}
+
+/* Line number */
+.line-number {
+  color: var(--ds-text-muted);
+  min-width: 22px;
+  margin-right: 14px;
+  text-align: right;
+  user-select: none;
+  font-size: 0.7rem;
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+
+.code-line.active .line-number {
+  color: var(--ds-brand);
+  opacity: 1;
+}
+
+/* Code text */
+.line-content {
+  color: var(--ds-text-secondary);
+  white-space: pre;
+}

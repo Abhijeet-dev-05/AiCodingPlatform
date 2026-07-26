@@ -1,0 +1,151 @@
+/* ── SolutionsTab ── */
+
+.solutions-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  animation: ds-fade-in 0.4s ease-out;
+}
+
+.solutions-header {
+  margin-bottom: 1.5rem;
+}
+
+.solutions-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+  background: var(--ds-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.solutions-subtitle {
+  color: var(--muted-foreground);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.solutions-tabs-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-left: 0;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.sol-lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--ds-radius-md);
+  color: var(--muted-foreground);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.sol-lang-btn:hover {
+  background: var(--accent);
+  border-color: var(--ds-border-medium);
+  color: var(--foreground);
+}
+
+.sol-lang-btn.active {
+  background: var(--ds-info-dim);
+  border-color: var(--ds-info);
+  color: var(--ds-info);
+  font-weight: 600;
+  box-shadow: 0 0 12px var(--ds-info-dim);
+}
+
+.sol-lang-icon { font-size: 1.1rem; }
+
+/* Code Container */
+.solution-code-container {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--ds-radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--shadow-md);
+}
+
+.solution-code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.25rem;
+  background: var(--secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.solution-code-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--foreground);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.copy-code-btn {
+  background: var(--accent);
+  border: 1px solid var(--border);
+  color: var(--muted-foreground);
+  padding: 0.4rem 0.75rem;
+  border-radius: calc(var(--radius) - 2px);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.copy-code-btn:hover {
+  background: var(--secondary);
+  color: var(--foreground);
+}
+
+.copy-code-btn.copied {
+  background: var(--ds-success-dim);
+  border-color: var(--ds-success-border);
+  color: var(--ds-success);
+}
+
+.solution-code-scrollable {
+  overflow-x: auto;
+  padding: 1.5rem;
+  background: var(--card);
+}
+
+.solution-pre {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--foreground);
+}
+
+.solution-pre code {
+  font-family: inherit;
+  white-space: pre;
+}
+
+.solution-code-scrollable::-webkit-scrollbar { height: 8px; width: 8px; }
+.solution-code-scrollable::-webkit-scrollbar-track { background: transparent; }
+.solution-code-scrollable::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+.solution-code-scrollable::-webkit-scrollbar-thumb:hover { background: var(--ds-border-medium); }

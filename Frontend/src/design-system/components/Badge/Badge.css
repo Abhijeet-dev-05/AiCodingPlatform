@@ -1,0 +1,65 @@
+.ds-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: var(--ds-radius-full);
+  font-family: var(--ds-font-sans);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* ── Sizes ── */
+.ds-badge--sm { padding: 3px 8px;  font-size: 0.68rem; }
+.ds-badge--md { padding: 4px 10px; font-size: var(--ds-text-xs); }
+.ds-badge--lg { padding: 5px 13px; font-size: var(--ds-text-sm); }
+
+/* ── Variants ── */
+.ds-badge--default {
+  background: var(--ds-bg-overlay);
+  color: var(--ds-text-secondary);
+  border-color: var(--ds-border-medium);
+}
+.ds-badge--brand {
+  background: var(--ds-brand-dim);
+  color: var(--ds-brand);
+  border-color: var(--ds-brand-border);
+}
+.ds-badge--success {
+  background: var(--ds-success-dim);
+  color: var(--ds-success);
+  border-color: var(--ds-success-border);
+}
+.ds-badge--warning {
+  background: var(--ds-warning-dim);
+  color: var(--ds-warning);
+  border-color: var(--ds-warning-border);
+}
+.ds-badge--error {
+  background: var(--ds-error-dim);
+  color: var(--ds-error);
+  border-color: var(--ds-error-border);
+}
+.ds-badge--info {
+  background: var(--ds-info-dim);
+  color: var(--ds-info);
+  border-color: var(--ds-info-border);
+}
+
+/* ── Dot ── */
+.ds-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* ── Difficulty-specific ── */
+.ds-badge--easy    { background: var(--ds-success-dim); color: var(--ds-success); border-color: var(--ds-success-border); }
+.ds-badge--medium  { background: var(--ds-warning-dim); color: var(--ds-warning); border-color: var(--ds-warning-border); }
+.ds-badge--hard    { background: var(--ds-error-dim);   color: var(--ds-error);   border-color: var(--ds-error-border);   }
+.ds-badge--solved  { background: var(--ds-success-dim); color: var(--ds-success); border-color: var(--ds-success-border); }
+.ds-badge--tag     { background: rgba(56,189,248,0.08);  color: #7dd3fc;           border-color: rgba(56,189,248,0.18);    }

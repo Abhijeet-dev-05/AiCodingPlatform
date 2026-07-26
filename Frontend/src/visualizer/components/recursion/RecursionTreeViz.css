@@ -1,0 +1,199 @@
+/* Recursion Tree Visualizer Styles */
+
+.tree-container {
+  padding: 2rem;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-primary);
+  margin-bottom: 1.5rem;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+}
+
+.tree-svg {
+  max-width: 100%;
+  height: auto;
+  min-height: 200px;
+}
+
+.tree-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  gap: 1rem;
+}
+
+.tree-empty span {
+  font-size: 4rem;
+  opacity: 0.5;
+}
+
+/* Edges */
+.tree-edge {
+  stroke: var(--border-primary);
+  stroke-width: 2;
+  opacity: 0.6;
+}
+
+/* Nodes */
+.tree-node {
+  fill: var(--bg-secondary);
+  stroke: var(--accent-primary);
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.tree-node.current {
+  fill: rgba(255, 107, 157, 0.3);
+  stroke: var(--accent-primary);
+  stroke-width: 3;
+  animation: nodePulse 0.5s ease-in-out infinite;
+}
+
+@keyframes nodePulse {
+  0%, 100% { 
+    filter: drop-shadow(0 0 5px rgba(255, 107, 157, 0.4));
+  }
+  50% { 
+    filter: drop-shadow(0 0 15px rgba(255, 107, 157, 0.8));
+  }
+}
+
+.tree-node.complete {
+  fill: rgba(0, 255, 136, 0.2);
+  stroke: var(--accent-success);
+}
+
+.tree-node.base-case {
+  fill: rgba(94, 179, 255, 0.2);
+  stroke: var(--accent-info);
+}
+
+/* Node Labels */
+.node-label {
+  fill: var(--text-primary);
+  font-size: 10px;
+  font-weight: 600;
+  text-anchor: middle;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.node-result {
+  fill: var(--accent-success);
+  font-size: 10px;
+  font-weight: 700;
+  text-anchor: middle;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Call Stack Section */
+.stack-section {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-primary);
+}
+
+.stack-section h4 {
+  margin: 0 0 1rem;
+  color: var(--text-primary);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stack-section h4::before {
+  content: '📚';
+}
+
+.call-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.stack-empty {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 1rem;
+  font-style: italic;
+}
+
+.stack-frame {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, rgba(45, 38, 64, 0.8) 0%, rgba(54, 47, 71, 0.6) 100%);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--accent-primary);
+  animation: stackSlide 0.3s ease-out;
+}
+
+@keyframes stackSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.stack-frame.calling {
+  border-left-color: var(--accent-primary);
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.15) 0%, rgba(45, 38, 64, 0.8) 100%);
+}
+
+.stack-frame.returning {
+  border-left-color: var(--accent-secondary);
+  background: linear-gradient(135deg, rgba(0, 229, 204, 0.15) 0%, rgba(45, 38, 64, 0.8) 100%);
+}
+
+.stack-frame.complete {
+  border-left-color: var(--accent-success);
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.15) 0%, rgba(45, 38, 64, 0.8) 100%);
+}
+
+.frame-func {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  color: var(--accent-info);
+}
+
+.frame-result {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--accent-success);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tree-container {
+    padding: 1rem;
+    min-height: 200px;
+  }
+  
+  .node-label,
+  .node-result {
+    font-size: 8px;
+  }
+  
+  .call-stack {
+    max-height: 150px;
+  }
+  
+  .stack-frame {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
+}

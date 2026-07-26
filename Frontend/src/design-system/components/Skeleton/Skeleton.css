@@ -1,0 +1,43 @@
+.ds-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--ds-bg-elevated) 25%,
+    rgba(255,255,255,0.07) 50%,
+    var(--ds-bg-elevated) 75%
+  );
+  background-size: 400px 100%;
+  animation: ds-shimmer 1.6s ease-in-out infinite;
+  border-radius: var(--ds-radius-sm);
+  flex-shrink: 0;
+}
+
+.ds-skeleton--text    { height: 14px; border-radius: var(--ds-radius-xs); }
+.ds-skeleton--heading { height: 24px; border-radius: var(--ds-radius-xs); }
+.ds-skeleton--circle  { border-radius: 50%; }
+.ds-skeleton--rect    { border-radius: var(--ds-radius-md); }
+.ds-skeleton--card    { border-radius: var(--ds-radius-xl); }
+
+/* ── Prebuilt Layouts ── */
+.ds-skeleton-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ds-skeleton-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Problem row skeleton */
+.ds-skeleton-problem-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-radius: var(--ds-radius-lg);
+  background: var(--ds-bg-elevated);
+  border: 1px solid var(--ds-border);
+  gap: 16px;
+}

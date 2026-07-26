@@ -1,0 +1,98 @@
+/* ═══════════════════════════════════════════════════════════════
+   StatePanel — Premium ds-token Theme
+   ═══════════════════════════════════════════════════════════════ */
+
+.state-panel {
+  background: var(--ds-bg-elevated);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-xl);
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset;
+}
+
+/* Header */
+.state-panel-title {
+  background: var(--ds-bg-overlay);
+  color: var(--ds-text-secondary);
+  font-size: var(--ds-text-sm);
+  font-weight: 700;
+  padding: 10px 14px;
+  margin: 0;
+  border-bottom: 1px solid var(--ds-border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: -0.01em;
+}
+
+.state-panel-title::before {
+  content: '📊';
+  font-size: 0.85rem;
+}
+
+/* Message row */
+.state-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 10px 14px;
+  background: rgba(244,114,182,0.06);
+  border-left: 3px solid var(--ds-brand);
+  margin: 0;
+}
+
+.message-icon { font-size: 0.9rem; flex-shrink: 0; line-height: 1.5; }
+
+.message-text {
+  color: var(--ds-text-secondary);
+  font-size: var(--ds-text-sm);
+  line-height: 1.55;
+}
+
+/* Variables grid */
+.state-grid {
+  padding: 12px 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.state-item {
+  background: var(--ds-bg-overlay);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: border-color 120ms ease;
+}
+.state-item:hover { border-color: var(--ds-border-medium); }
+.state-item.wide  { grid-column: span 2; }
+
+.state-label {
+  color: var(--ds-text-muted);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.state-value {
+  font-family: var(--ds-font-mono);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Semantic colour mappings */
+.state-value.pink   { color: var(--ds-brand); }
+.state-value.teal   { color: var(--ds-info); }
+.state-value.yellow { color: var(--ds-warning); }
+.state-value.green  { color: var(--ds-success); }
+.state-value.purple { color: var(--ds-brand-2); }
+
+@media (max-width: 520px) {
+  .state-grid { grid-template-columns: 1fr; }
+  .state-item.wide { grid-column: span 1; }
+}

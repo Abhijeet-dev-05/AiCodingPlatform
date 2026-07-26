@@ -1,0 +1,240 @@
+/* ── Admin Pages ── */
+
+.admin-dashboard {
+  min-height: 100vh;
+  background: var(--background);
+  padding: 2rem 1.5rem;
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+.admin-dashboard-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.admin-dashboard-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.admin-dashboard-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: var(--ds-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.admin-dashboard-header p {
+  color: var(--muted-foreground);
+  font-size: 0.95rem;
+}
+
+.admin-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted-foreground);
+  font-size: 0.85rem;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  transition: color 0.2s ease;
+}
+
+.admin-back-btn:hover {
+  color: var(--primary);
+}
+
+.admin-options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.admin-option-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  color: var(--foreground);
+}
+
+.admin-option-card:hover {
+  border-color: color-mix(in oklch, var(--primary) 40%, transparent);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.admin-option-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 1rem;
+  border-radius: calc(var(--radius) - 2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.admin-option-icon.create  { background: var(--ds-success-dim);  color: var(--ds-success); }
+.admin-option-icon.update  { background: var(--ds-warning-dim);  color: var(--ds-warning); }
+.admin-option-icon.delete  { background: var(--ds-error-dim);    color: var(--ds-error); }
+.admin-option-icon.video   { background: var(--ds-brand-dim);    color: var(--primary); }
+.admin-option-icon.dashboard { background: var(--ds-info-dim);   color: var(--ds-info); }
+
+.admin-option-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+}
+
+.admin-option-card p {
+  font-size: 0.85rem;
+  color: var(--muted-foreground);
+  margin-bottom: 1rem;
+}
+
+.admin-option-btn {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border-radius: calc(var(--radius) - 2px);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.admin-option-btn.create  { background: var(--ds-success-dim);  border-color: var(--ds-success-border);  color: var(--ds-success); }
+.admin-option-btn.update  { background: var(--ds-warning-dim);  border-color: var(--ds-warning-border);  color: var(--ds-warning); }
+.admin-option-btn.delete  { background: var(--ds-error-dim);    border-color: var(--ds-error-border);    color: var(--ds-error); }
+.admin-option-btn.video   { background: var(--ds-brand-dim);    border-color: var(--ds-brand-border);    color: var(--primary); }
+.admin-option-btn.dashboard { background: var(--ds-info-dim);   border-color: var(--ds-info-border);     color: var(--ds-info); }
+
+.admin-table-page {
+  min-height: 100vh;
+  background: var(--background);
+  padding: 1.5rem;
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+.admin-table-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.admin-table-wrapper {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th {
+  background: var(--secondary);
+  padding: 0.9rem 1rem;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  border-bottom: 1px solid var(--border);
+}
+
+.admin-table td {
+  padding: 0.9rem 1rem;
+  font-size: 0.9rem;
+  color: var(--foreground);
+  border-bottom: 1px solid var(--border);
+}
+
+.admin-table tr:hover td {
+  background: color-mix(in oklch, var(--primary) 5%, transparent);
+}
+
+.badge-easy {
+  background: var(--ds-success-dim);
+  color: var(--ds-success);
+  border: 1px solid var(--ds-success-border);
+  border-radius: var(--ds-radius-full);
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-medium {
+  background: var(--ds-warning-dim);
+  color: var(--ds-warning);
+  border: 1px solid var(--ds-warning-border);
+  border-radius: var(--ds-radius-full);
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-hard {
+  background: var(--ds-error-dim);
+  color: var(--ds-error);
+  border: 1px solid var(--ds-error-border);
+  border-radius: var(--ds-radius-full);
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.btn-action {
+  padding: 0.4rem 0.9rem;
+  border-radius: calc(var(--radius) - 2px);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-action.edit   { background: var(--ds-warning-dim); color: var(--ds-warning); border: 1px solid var(--ds-warning-border); }
+.btn-action.delete { background: var(--ds-error-dim);   color: var(--ds-error);   border: 1px solid var(--ds-error-border); }
+.btn-action.save   { background: var(--ds-success-dim); color: var(--ds-success); border: 1px solid var(--ds-success-border); }
+
+.admin-loading .spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--ds-brand-dim);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: ds-spin 1s linear infinite;
+}
+
+.admin-error {
+  background: var(--ds-error-dim);
+  border: 1px solid var(--ds-error-border);
+  border-radius: calc(var(--radius) - 2px);
+  padding: 1rem;
+  color: var(--ds-error);
+  text-align: center;
+}
+
+.admin-modal {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 500px;
+  padding: 1.5rem;
+}
+
+.admin-modal h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 1.5rem;
+}

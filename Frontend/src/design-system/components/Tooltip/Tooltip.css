@@ -1,0 +1,44 @@
+.ds-tooltip-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.ds-tooltip-content {
+  position: absolute;
+  z-index: var(--ds-z-tooltip);
+  background: var(--ds-bg-overlay);
+  color: var(--ds-text-primary);
+  border: 1px solid var(--ds-border-medium);
+  border-radius: var(--ds-radius-md);
+  padding: 6px 10px;
+  font-size: var(--ds-text-xs);
+  font-weight: 500;
+  white-space: nowrap;
+  max-width: 220px;
+  white-space: normal;
+  pointer-events: none;
+  box-shadow: var(--ds-shadow-lg);
+  animation: ds-slide-down var(--ds-duration-fast) var(--ds-ease);
+}
+
+/* Positions */
+.ds-tooltip-content--top {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+.ds-tooltip-content--bottom {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+.ds-tooltip-content--left {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.ds-tooltip-content--right {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}

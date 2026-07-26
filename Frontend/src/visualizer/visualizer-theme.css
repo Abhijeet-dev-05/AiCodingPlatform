@@ -1,0 +1,71 @@
+/* ── Visualizer global theme ── */
+
+/* VisualizerHome has its own sticky header — NO extra top padding */
+.visualizer-home {
+  background-color: transparent !important;
+  padding-top: 0 !important;
+  position: relative;
+}
+
+/* Category listing pages need top spacing to clear sticky navbar */
+.category-page,
+.sorting-category-page,
+.strings-category-page,
+.graphs-category-page,
+.trees-category-page,
+.recursion-category-page,
+.dynamic-programming-category,
+.stacks-queues-category {
+  background-color: transparent !important;
+  padding-top: 4.5rem;
+  position: relative;
+}
+
+/* Algo visualizer pages manage their own padding */
+.tree-viz-page,.graph-viz-page,.dp-viz-page,.strings-viz-page,
+.stack-viz-page,.queue-viz-page,.searching-viz-page,.recursion-viz-page,
+.binarysearch-viz-page,.linearsearch-viz-page {
+  padding-top: 2rem;
+  position: relative;
+}
+
+.visualizer-home .particles,.particles { z-index:0; position:absolute; inset:0; pointer-events:none; }
+
+/* Shared tabs */
+.viz-tabs,.problem-tabs,.visualizer-tabs { display:flex; gap:0.5rem; align-items:center; padding:0.5rem 0.35rem; }
+.viz-tab,.visualizer-tab,.problem-tab {
+  padding:0.5rem 1rem; border-radius:var(--ds-radius-full);
+  background:var(--ds-bg-overlay); color:var(--ds-text-secondary);
+  font-weight:600; cursor:pointer; border:1px solid var(--ds-border);
+  transition:all 180ms ease;
+}
+.viz-tab.active,.problem-tab.active {
+  background:var(--ds-gradient); color:#fff;
+  border-color:transparent; box-shadow:var(--ds-shadow-brand);
+}
+
+/* Shared action buttons */
+.viz-action-btn,.try-btn,.btn-visualize {
+  background:var(--ds-gradient); color:#fff;
+  border:none; padding:0.6rem 1.1rem;
+  border-radius:var(--ds-radius-md); font-weight:700;
+  cursor:pointer; transition:box-shadow 160ms ease;
+  box-shadow:var(--ds-shadow-brand);
+}
+.viz-action-btn:hover,.try-btn:hover { box-shadow:var(--ds-shadow-brand-lg); }
+
+/* Code panels */
+.code-panel,.monaco-editor-container,.code-content,.results-panel {
+  background:var(--ds-bg-elevated);
+  border:1px solid var(--ds-border);
+  border-radius:var(--ds-radius-lg);
+}
+.code-panel-title { font-weight:700; color:var(--ds-text-primary); margin-bottom:0.6rem; }
+
+/* Category card padding — only for category listing pages */
+.category-page .algorithm-card,.algo-card { padding:1rem 1.15rem; }
+
+@media (max-width:900px) {
+  .viz-content,.visualizer-page .viz-content { grid-template-columns:1fr!important; }
+  .viz-action-btn,.btn-visualize { width:100%; }
+}
