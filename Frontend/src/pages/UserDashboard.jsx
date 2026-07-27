@@ -88,35 +88,52 @@ function Heatmap({ data }) {
   const dateMap = {};
   (data || []).forEach(d => { dateMap[d.date] = d.count; });
 
-  // Build week columns starting from Sunday
+  // Build week columns — each column is 7 days starting Sunday
   const weeks = [];
   const cur = new Date(yearAgo);
-  cur.setDate(cur.getDate() - cur.getDay()); // back to Sunday
+  cur.setDate(cur.getDate() - cur.getDay()); // rewind to Sunday
   while (cur <= today) {
     const week = [];
     for (let i = 0; i < 7; i++) {
-      const ds = cur.toISOString().split('T')[0];
+      const copy = new Date(cur);
+      const ds = copy.toISOString().split('T')[0];
       week.push({
         date: ds,
         count: dateMap[ds] || 0,
-        inRange: cur >= yearAgo && cur <= today,
-        month: cur.getMonth(),
-        day: cur.getDate(),
+        inRange: copy >= yearAgo && copy <= today,
+        month: copy.getMonth(),
+        day: copy.getDate(),
       });
       cur.setDate(cur.getDate() + 1);
     }
     weeks.push(week);
   }
 
-  // Build month label positions:
-  // A month label appears at the first week-column where the 1st of that month falls
-  const monthLabels = [];
+  // Detect which week-index each month STARTS at (day===1 inside range)
+  const monthStarts = {};
   weeks.forEach((week, wi) => {
-    // Check if any day in this week is the 1st of a month and is in range
-    const firstDay = week.find(d => d.inRange && d.day === 1);
-    if (firstDay) {
-      monthLabels.push({ wi, month: firstDay.month });
+    week.forEach(day => {
+      if (day.inRange && day.day === 1 && monthStarts[day.month] === undefined) {
+        monthStarts[day.month] = wi;
+      }
+    });
+  });
+
+  // Group weeks into month blocks for the gap treatment:
+  // each block is { month, weeks[] }
+  // A new block begins whenever the current week crosses into a new month
+  const blocks = [];
+  let currentMonth = null;
+  weeks.forEach((week, wi) => {
+    // Determine the dominant month in this week (the month of day 3 — mid-week)
+    const midDay = week[3] || week[0];
+    const wMonth = midDay.inRange ? midDay.month : null;
+
+    if (wMonth !== currentMonth) {
+      currentMonth = wMonth;
+      blocks.push({ month: wMonth, weeks: [] });
     }
+    blocks[blocks.length - 1].weeks.push({ week, wi });
   });
 
   const level = (c) => c === 0 ? 0 : c <= 2 ? 1 : c <= 4 ? 2 : c <= 6 ? 3 : 4;
@@ -124,7 +141,7 @@ function Heatmap({ data }) {
 
   return (
     <div className="ud-heatmap-wrap">
-      {/* Meta row */}
+      {/* Meta */}
       <div className="ud-heatmap-meta">
         <span className="ud-heatmap-total">
           <strong>{total}</strong> submissions in the last year
@@ -138,35 +155,36 @@ function Heatmap({ data }) {
         </div>
       </div>
 
-      {/* Scrollable grid + month labels */}
+      {/* Scrollable area */}
       <div className="ud-heatmap-scroll">
         <div className="ud-heatmap-outer">
-          {/* Month labels row */}
-          <div className="ud-heatmap-months">
-            {weeks.map((_, wi) => {
-              const lbl = monthLabels.find(m => m.wi === wi);
-              return (
-                <div key={wi} className="ud-heatmap-month-cell">
-                  {lbl ? MONTH_NAMES[lbl.month] : ''}
-                </div>
-              );
-            })}
-          </div>
 
-          {/* Grid */}
-          <div className="ud-heatmap-grid">
-            {weeks.map((week, wi) => (
-              <div key={wi} className="ud-heatmap-week">
-                {week.map((day, di) => (
-                  <div
-                    key={di}
-                    className={`ud-heatmap-cell ud-heatmap-cell--${day.inRange ? level(day.count) : 'empty'}`}
-                    title={day.inRange ? `${day.date}: ${day.count} submission${day.count !== 1 ? 's' : ''}` : ''}
-                  />
-                ))}
+          {/* Month label + week columns grouped by month */}
+          <div className="ud-heatmap-blocks">
+            {blocks.map((block, bi) => (
+              <div key={bi} className="ud-heatmap-block">
+                {/* Month label */}
+                <div className="ud-heatmap-block-label">
+                  {block.month !== null ? MONTH_NAMES[block.month] : ''}
+                </div>
+                {/* Week columns inside this month */}
+                <div className="ud-heatmap-block-weeks">
+                  {block.weeks.map(({ week, wi }) => (
+                    <div key={wi} className="ud-heatmap-week">
+                      {week.map((day, di) => (
+                        <div
+                          key={di}
+                          className={`ud-heatmap-cell ud-heatmap-cell--${day.inRange ? level(day.count) : 'empty'}`}
+                          title={day.inRange ? `${day.date}: ${day.count} submission${day.count !== 1 ? 's' : ''}` : ''}
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
+
         </div>
       </div>
     </div>

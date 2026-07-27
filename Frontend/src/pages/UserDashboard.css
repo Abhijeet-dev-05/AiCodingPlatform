@@ -370,28 +370,37 @@
 .ud-heatmap-scroll::-webkit-scrollbar { height: 4px; }
 .ud-heatmap-scroll::-webkit-scrollbar-thumb { background: var(--ds-border-medium); border-radius: 99px; }
 
-/* Outer wrapper: month labels on top, grid below */
-.ud-heatmap-outer {
+/* Outer container */
+.ud-heatmap-outer { min-width: max-content; }
+
+/* Block-based layout: one block per month with a gap between months */
+.ud-heatmap-blocks {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;           /* ← gap BETWEEN months, like the image */
+}
+
+/* One month block */
+.ud-heatmap-block {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  min-width: max-content;
 }
 
-/* Month label row — one cell per week column */
-.ud-heatmap-months {
-  display: flex;
-  gap: 3px;
-}
-.ud-heatmap-month-cell {
-  width: 13px;           /* same width as a cell */
-  font-size: 0.65rem;
+/* Month label above its week columns */
+.ud-heatmap-block-label {
+  font-size: 0.68rem;
   font-weight: 600;
   color: var(--ds-text-muted);
   white-space: nowrap;
-  overflow: visible;
-  text-align: left;
-  /* label overflows to the right — that's intentional like GitHub */
+  min-height: 14px;
+  line-height: 1;
+}
+
+/* Week columns inside one month block */
+.ud-heatmap-block-weeks {
+  display: flex;
+  gap: 3px;           /* ← tight gap WITHIN a month */
 }
 
 .ud-heatmap-grid {
